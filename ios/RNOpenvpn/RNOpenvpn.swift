@@ -140,7 +140,7 @@ class RNOpenvpn: RCTEventEmitter {
       }
 
 
-  @objc
+  @objc(getCurrentState:withRejecter:)
    func getCurrentState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
     
      if let vpnState = getVpnState(status:NEVPNStatus(rawValue: (currentManager?.connection.status)!.rawValue) ?? .disconnected) as? [String: Any] {
