@@ -12,7 +12,7 @@ class RNOpenvpn: RCTEventEmitter {
     private let vpn = NetworkExtensionVPN()
 
     @objc static var STATE_CHANGED_EVENT: String = "stateChanged"
-    private var cfg: RNOpenvpn.ProviderConfiguration?
+    private var cfg: OpenVPN.ProviderConfiguration?
    
     private var vpnStateObserver: Any?
     var currentManager: NETunnelProviderManager?
@@ -58,11 +58,11 @@ class RNOpenvpn: RCTEventEmitter {
         
         let keychain = Keychain(group: appGroup)
     
-        let credentials = RNOpenvpn.Credentials(username, password)
+        let credentials = OpenVPN.Credentials(username, password)
     
-        var resultParsed : RNOpenvpn.ConfigurationParser.Result
+        var resultParsed : OpenVPN.ConfigurationParser.Result
         do {
-          resultParsed = try RNOpenvpn.ConfigurationParser.parsed(fromContents: ovpnString)
+          resultParsed = try OpenVPN.ConfigurationParser.parsed(fromContents: ovpnString)
         }
         catch {
 
@@ -73,7 +73,7 @@ class RNOpenvpn: RCTEventEmitter {
 
 
 
-        cfg = RNOpenvpn.ProviderConfiguration("VPN", appGroup: appGroup, configuration: resultParsed.configuration)
+        cfg = OpenVPN.ProviderConfiguration("VPN", appGroup: appGroup, configuration: resultParsed.configuration)
         cfg?.shouldDebug = true
         cfg?.masksPrivateData = true
         cfg?.username = credentials.username
