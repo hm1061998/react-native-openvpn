@@ -21,6 +21,9 @@ RCT_EXTERN_METHOD(connect:(NSDictionary *)options
 RCT_EXTERN_METHOD(disconnect:(RCTPromiseResolveBlock)resolve
                   withRejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getCurrentState:(RCTPromiseResolveBlock)resolve
+                  withRejecter:(RCTPromiseRejectBlock)reject)
+
 
 - (NSDictionary *)constantsToExport {
   return @{

@@ -125,7 +125,7 @@ class Openvpn: RCTEventEmitter {
 
   
     
-    override  func startObserving() {
+    override func startObserving() {
       let center = NotificationCenter.default
       vpnStateObserver = center.addObserver(forName: VPNNotification.didChangeStatus, object: nil, queue: nil) { [weak self] notification in
               guard let strongSelf = self else { return }
@@ -150,7 +150,7 @@ class Openvpn: RCTEventEmitter {
   
 
 
-  @objc
+    @objc
    func getCurrentState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
     
      if let vpnState = getVpnState(status:NEVPNStatus(rawValue: (currentManager?.connection.status)!.rawValue) ?? .disconnected) as? [String: Any] {
