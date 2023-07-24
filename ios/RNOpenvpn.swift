@@ -111,13 +111,13 @@ class RNOpenvpn: RCTEventEmitter {
            await vpn.disconnect()
 
       }
-
+      resolve(nil)
     }
   
 
   
-    
-    override  func startObserving() {
+    @objc(observeState:withRejecter:)
+    func observeState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
       let center = NotificationCenter.default
       vpnStateObserver = center.addObserver(forName: VPNNotification.didChangeStatus, object: nil, queue: nil) { [weak self] notification in
               guard let strongSelf = self else { return }
@@ -126,17 +126,17 @@ class RNOpenvpn: RCTEventEmitter {
                 strongSelf.sendEvent(withName: RNOpenvpn.STATE_CHANGED_EVENT, body: vpnState)
               }
           }
-         
+      resolve(nil)
       }
 
-
-    override func stopObserving() {
+    @objc(stopObserveState:withRejecter:)
+    func stopObserveState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
         let center = NotificationCenter.default
         if let observer = vpnStateObserver {
             center.removeObserver(observer)
             vpnStateObserver = nil
         }
-           
+      resolve(nil)
       }
 
 
