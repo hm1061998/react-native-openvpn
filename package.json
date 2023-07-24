@@ -1,7 +1,7 @@
 {
-  "name": "react-native-openvpn",
+  "name": "react-native-openvpn-next",
   "version": "0.1.0",
-  "description": "''",
+  "description": "",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -12,6 +12,7 @@
     "lib",
     "android",
     "ios",
+    "vpnLib",
     "cpp",
     "*.podspec",
     "!lib/typescript/example",
