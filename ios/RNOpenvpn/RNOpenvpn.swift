@@ -6,9 +6,18 @@ import TunnelKitOpenVPN
 import NetworkExtension
 
 
+enum VpnState: Int {
+  case VpnStateDisconnected
+  case VpnStateConnecting
+  case VpnStateConnected
+  case VpnStateDisconnecting
+  case VpnOtherState
+}
+
 @objc(RNOpenvpn)
 class RNOpenvpn: RCTEventEmitter {
   public static var emitter: RCTEventEmitter!
+  
   private let vpn = NetworkExtensionVPN()
   
   private let STATE_CHANGED_EVENT: String = "stateChanged"
@@ -46,15 +55,12 @@ class RNOpenvpn: RCTEventEmitter {
   @objc(connect:withResolver:withRejecter:)
   func connect(_ options: NSDictionary, _ resolver: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
     
-    
-    
     Task {
       await vpn.prepare()
       let managers = try await lookupAll()
       guard let manager = managers.first else {
         return
       }
-      
       currentManager = manager
     }
     
@@ -102,7 +108,7 @@ class RNOpenvpn: RCTEventEmitter {
         tunnelIdentifier,
         configuration: cfg!,
         extra: extra,
-        after: .seconds(0)
+        after: .seconds(1)
       )
     }
   }
@@ -169,40 +175,38 @@ class RNOpenvpn: RCTEventEmitter {
   @objc(getCurrentState:withRejecter:)
   func getCurrentState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
     
-    if let vpnState = getVpnState(status:NEVPNStatus(rawValue: currentManager?.connection.status.rawValue ?? 0) ?? .disconnected) as? [String: Any] {
-      resolve(vpnState["state"])
-    } else {
-      reject("ERROR", "Failed to get VPN state", nil)
-    }
+    let vpnState : NSDictionary = getVpnState(status:NEVPNStatus(rawValue: currentManager?.connection.status.rawValue ?? 0) ?? .disconnected)
+    
+    resolve(vpnState["state"])
     
     
   }
   
-  private func getVpnState(status: NEVPNStatus) -> [String: Any] {
-    var state: String
+  private func getVpnState(status: NEVPNStatus) -> NSDictionary {
+    var state: Int
     var message: String
     
     switch status {
     case .disconnected:
-      state = "VPN_STATE_DISCONNECTED"
+      state = VpnState.VpnStateDisconnected.rawValue
       message = "The VPN is disconnected"
     case .connecting:
-      state = "VPN_STATE_CONNECTING"
+      state = VpnState.VpnStateConnecting.rawValue
       message = "The VPN is in the process of connecting"
     case .connected:
-      state = "VPN_STATE_CONNECTED"
+      state = VpnState.VpnStateConnected.rawValue
       message = "The VPN is connected"
     case .disconnecting:
-      state = "VPN_STATE_DISCONNECTING"
+      state = VpnState.VpnStateDisconnecting.rawValue
       message = "The VPN is in the process of disconnecting"
     case .reasserting:
-      state = "VPN_STATE_REASSERTING"
+      state = VpnState.VpnOtherState.rawValue
       message = "The VPN is in the process of reconnecting"
     case .invalid:
-      state = "VPN_STATE_INVALID"
+      state = VpnState.VpnOtherState.rawValue
       message = "The VPN configuration does not exist in the Network Extension preferences or is not enabled"
     default:
-      state = "VPN_STATE_UNKNOWN"
+      state = VpnState.VpnOtherState.rawValue
       message = "The VPN State is unknown"
     }
     

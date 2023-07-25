@@ -1,7 +1,0 @@
-# ignored suffix
-.DS_Store
-.npmignore
-.clang-format
-
-# .so
-src/main/jniLibs/

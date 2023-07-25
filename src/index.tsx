@@ -56,4 +56,20 @@ export function disconnect(): Promise<any> {
   return RNOpenvpn.disconnect();
 }
 
-export default RNOpenvpn;
+export function getCurrentState(): Promise<any> {
+  return RNOpenvpn.getCurrentState();
+}
+
+export const VpnState = RNOpenvpn.VpnState;
+export const CompatMode = RNOpenvpn.CompatMode;
+
+export default {
+  CompatMode,
+  VpnState,
+  getCurrentState,
+  disconnect,
+  connect,
+  addVpnStateListener,
+  removeVpnStateListener,
+  RNOpenvpn,
+};

@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger, VpnState) {
 
 @interface RCT_EXTERN_MODULE(RNOpenvpn, RCTEventEmitter)
 RCT_EXTERN_METHOD(supportedEvents)
-RCT_EXTERN_METHOD(dispose)
+
 
 RCT_EXTERN_METHOD(connect:(NSDictionary *)options
                   withResolver:(RCTPromiseResolveBlock)resolve

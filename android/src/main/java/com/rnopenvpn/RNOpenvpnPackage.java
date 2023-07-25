@@ -1,4 +1,4 @@
-package com.openvpn;
+package com.rnopenvpn;
 
 import androidx.annotation.NonNull;
 
