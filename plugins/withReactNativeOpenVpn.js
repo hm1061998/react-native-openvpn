@@ -35,7 +35,7 @@ const withVPNSettingsGradle = (config) => {
       config.modResults.contents +
       `
 include ':vpnLib'
-project(':vpnLib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-simple-openvpn/vpnLib')`;
+project(':vpnLib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-openvpn-next/vpnLib')`;
     return config;
   });
 };
