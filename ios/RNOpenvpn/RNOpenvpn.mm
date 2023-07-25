@@ -16,7 +16,7 @@ RCT_EXTERN_METHOD(dispose)
 
 RCT_EXTERN_METHOD(connect:(NSDictionary *)options
                   withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+                  withRejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(disconnect:(RCTPromiseResolveBlock)resolve
                   withRejecter:(RCTPromiseRejectBlock)reject)

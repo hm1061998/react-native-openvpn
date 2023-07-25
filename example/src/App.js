@@ -13,7 +13,7 @@ import Openvpn, {
   removeVpnStateListener,
   connect,
   disconnect,
-} from 'react-native-openvpn';
+} from 'react-native-openvpn-next';
 
 const dataOvpn = {
   new: `###############################################################################
@@ -56,7 +56,7 @@ const dataOvpn = {
   # 
   # Specify either 'proto tcp' or 'proto udp'.
   
-  proto tcp
+  proto udp
   
   
   ###############################################################################
@@ -77,7 +77,7 @@ const dataOvpn = {
   # When you use UDP protocol, the port number must same as the configuration
   # setting of "OpenVPN Server Compatible Function" on the VPN Server.
   
-  remote public-vpn-185.opengw.net 443
+  remote 73.246.26.66 1534
   
   
   ###############################################################################
@@ -226,14 +226,20 @@ const dataOvpn = {
   -----END RSA PRIVATE KEY-----
   
   </key>
-`,
+  
+  `,
 };
 
 export default function App() {
   const [result, setResult] = React.useState();
 
   React.useEffect(() => {
-    console.log('Openvpn', Openvpn.VpnState);
+    // console.log('Openvpn', Openvpn.VpnState);
+    Openvpn.getCurrentState().then((state) => {
+      console.log('state', state);
+    });
+
+    // Openvpn.observeState();
     // multiply(3, 7).then(setResult);
     addVpnStateListener((e) => {
       console.log('e', e);
@@ -241,6 +247,7 @@ export default function App() {
 
     return () => {
       removeVpnStateListener();
+      // Openvpn.stopObserveState();
     };
   }, []);
 
@@ -250,7 +257,15 @@ export default function App() {
 
       <TouchableOpacity
         onPress={() => {
-          connect({ ovpnString: dataOvpn.new });
+          Openvpn.connect({
+            ovpnString: dataOvpn.new,
+            appGroup: 'group.org.reactjs.native.example.OpenvpnExample',
+            tunnelIdentifier:
+              'org.reactjs.native.example.OpenvpnExample.OpenVpnDemo',
+            useLegacyProvider: true,
+            username: 'vpn',
+            password: 'vpn',
+          });
         }}
       >
         <Text>connect</Text>

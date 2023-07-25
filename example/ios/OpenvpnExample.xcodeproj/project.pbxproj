@@ -14,8 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-OpenvpnExample-OpenvpnExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-OpenvpnExample-OpenvpnExampleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		84BDCCD22A6A9AC50019A9CE /* Openvpn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDCCD12A6A9AC50019A9CE /* Openvpn.swift */; };
-		84BDCCD42A6A9B2D0019A9CE /* Openvpn.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDCCD32A6A9B2D0019A9CE /* Openvpn.m */; };
+		849376562A6F84DF001784A0 /* RNOpenvpn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849376532A6F84DF001784A0 /* RNOpenvpn.swift */; };
+		849376572A6F84DF001784A0 /* RNOpenvpn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 849376542A6F84DF001784A0 /* RNOpenvpn.mm */; };
 		84EC33B82A6A8D0500A64B19 /* TunnelKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84EC33B72A6A8D0500A64B19 /* TunnelKit */; };
 		84EC33BA2A6A8D0500A64B19 /* TunnelKitLZO in Frameworks */ = {isa = PBXBuildFile; productRef = 84EC33B92A6A8D0500A64B19 /* TunnelKitLZO */; };
 		84EC33BC2A6A8D0500A64B19 /* TunnelKitOpenVPN in Frameworks */ = {isa = PBXBuildFile; productRef = 84EC33BB2A6A8D0500A64B19 /* TunnelKitOpenVPN */; };
@@ -76,9 +76,9 @@
 		5B7EB9410499542E8C5724F5 /* Pods-OpenvpnExample-OpenvpnExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenvpnExample-OpenvpnExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-OpenvpnExample-OpenvpnExampleTests/Pods-OpenvpnExample-OpenvpnExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-OpenvpnExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenvpnExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = OpenvpnExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		84BDCCD12A6A9AC50019A9CE /* Openvpn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Openvpn.swift; sourceTree = "<group>"; };
-		84BDCCD32A6A9B2D0019A9CE /* Openvpn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Openvpn.m; sourceTree = "<group>"; };
-		84BDCCD52A6A9B630019A9CE /* Openvpn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Openvpn-Bridging-Header.h"; sourceTree = "<group>"; };
+		849376532A6F84DF001784A0 /* RNOpenvpn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNOpenvpn.swift; sourceTree = "<group>"; };
+		849376542A6F84DF001784A0 /* RNOpenvpn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RNOpenvpn.mm; sourceTree = "<group>"; };
+		849376552A6F84DF001784A0 /* RNOpenvpn-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNOpenvpn-Bridging-Header.h"; sourceTree = "<group>"; };
 		84EC33C42A6A8D3A00A64B19 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		84EC33D32A6A8D6C00A64B19 /* OpenvpnExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = OpenvpnExample.entitlements; path = OpenvpnExample/OpenvpnExample.entitlements; sourceTree = "<group>"; };
 		84EC33D82A6A8DC800A64B19 /* OpenVPNDemo.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenVPNDemo.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,15 +146,13 @@
 			isa = PBXGroup;
 			children = (
 				84EC33D32A6A8D6C00A64B19 /* OpenvpnExample.entitlements */,
+				849376522A6F84DF001784A0 /* RNOpenvpn */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				84BDCCD12A6A9AC50019A9CE /* Openvpn.swift */,
-				84BDCCD32A6A9B2D0019A9CE /* Openvpn.m */,
-				84BDCCD52A6A9B630019A9CE /* Openvpn-Bridging-Header.h */,
 			);
 			name = OpenvpnExample;
 			sourceTree = "<group>";
@@ -201,6 +199,17 @@
 				84EC33D82A6A8DC800A64B19 /* OpenVPNDemo.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		849376522A6F84DF001784A0 /* RNOpenvpn */ = {
+			isa = PBXGroup;
+			children = (
+				849376532A6F84DF001784A0 /* RNOpenvpn.swift */,
+				849376542A6F84DF001784A0 /* RNOpenvpn.mm */,
+				849376552A6F84DF001784A0 /* RNOpenvpn-Bridging-Header.h */,
+			);
+			name = RNOpenvpn;
+			path = ../../ios/RNOpenvpn;
 			sourceTree = "<group>";
 		};
 		84EC33DA2A6A8DC800A64B19 /* OpenVPNDemo */ = {
@@ -535,9 +544,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				84BDCCD42A6A9B2D0019A9CE /* Openvpn.m in Sources */,
-				84BDCCD22A6A9AC50019A9CE /* Openvpn.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				849376572A6F84DF001784A0 /* RNOpenvpn.mm in Sources */,
+				849376562A6F84DF001784A0 /* RNOpenvpn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,11 +635,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OpenvpnExample/OpenvpnExample.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = S664UNQD45;
+				DEVELOPMENT_TEAM = S664UNQD45;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = OpenvpnExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -647,7 +655,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = OpenvpnExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = openvpn;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -662,11 +669,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OpenvpnExample/OpenvpnExample.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = S664UNQD45;
+				DEVELOPMENT_TEAM = S664UNQD45;
 				INFOPLIST_FILE = OpenvpnExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -682,7 +688,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = OpenvpnExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = openvpn;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -837,12 +842,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = OpenVPNDemo/OpenVPNDemo.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = S664UNQD45;
+				DEVELOPMENT_TEAM = S664UNQD45;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenVPNDemo/Info.plist;
@@ -860,7 +864,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.OpenvpnExample.OpenVpnDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = openvpndemo;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -880,13 +883,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = OpenVPNDemo/OpenVPNDemo.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = S664UNQD45;
+				DEVELOPMENT_TEAM = S664UNQD45;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenVPNDemo/Info.plist;
@@ -903,7 +905,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.OpenvpnExample.OpenVpnDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = openvpndemo;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;

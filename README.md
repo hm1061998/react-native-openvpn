@@ -23,12 +23,12 @@ If this project has helped you out, please support us with a star 🌟
 
 See [CHANGELOG](CHANGELOG.md) for details
 
-<!-- ## Preview
+## Preview
 
 <p>
   <img src="./.github/images/openvpn-android.gif" height="450" alt="openvpn-android" />
   <img src="./.github/images/openvpn-ios.gif" height="450" alt="openvpn-ios" />
-</p> -->
+</p>
 
 ## Installation
 
@@ -64,7 +64,7 @@ include ':app'
 
 #### Import jniLibs
 
-Due to file size limitations, jniLibs are too big to be published on npm. Use the assets on [GitHub Releases](https://github.com/ccnnde/react-native-openvpn-next/releases/tag/v2.0.0) instead
+Due to file size limitations, jniLibs are too big to be published on npm. Use the assets on [GitHub Releases](https://github.com/ccnnde/react-native-openvpn/releases/tag/v2.0.0) instead
 
 Download and unzip the resources you need for the corresponding architecture, and put them in `android/app/src/main/jniLibs` (create a new `jniLibs` folder if you don't have one)
 
@@ -134,7 +134,7 @@ Or, if using CocoaPods, the following paths should be automatically included the
 ```jsx
 import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
-import RNSimpleOpenvpn, {
+import RNOpenvpn, {
   addVpnStateListener,
   removeVpnStateListener,
 } from 'react-native-openvpn-next';
@@ -145,7 +145,7 @@ const App = () => {
   useEffect(() => {
     async function observeVpn() {
       if (isIPhone) {
-        await RNSimpleOpenvpn.observeState();
+        await RNOpenvpn.observeState();
       }
 
       addVpnStateListener((e) => {
@@ -157,7 +157,7 @@ const App = () => {
 
     return async () => {
       if (isIPhone) {
-        await RNSimpleOpenvpn.stopObserveState();
+        await RNOpenvpn.stopObserveState();
       }
 
       removeVpnStateListener();
@@ -166,7 +166,7 @@ const App = () => {
 
   async function startOvpn() {
     try {
-      await RNSimpleOpenvpn.connect({
+      await RNOpenvpn.connect({
         remoteAddress: '192.168.1.1 3000',
         ovpnFileName: 'client',
         assetsPath: 'ovpn/',
@@ -180,14 +180,14 @@ const App = () => {
 
   async function stopOvpn() {
     try {
-      await RNSimpleOpenvpn.disconnect();
+      await RNOpenvpn.disconnect();
     } catch (error) {
       // ...
     }
   }
 
   function printVpnState() {
-    console.log(JSON.stringify(RNSimpleOpenvpn.VpnState, undefined, 2));
+    console.log(JSON.stringify(RNOpenvpn.VpnState, undefined, 2));
   }
 
   // ...
