@@ -47,6 +47,8 @@ class RNOpenvpn: RCTEventEmitter {
   }
   
   
+  
+  
   private func lookupAll() async throws -> [NETunnelProviderManager] {
     try await NETunnelProviderManager.loadAllFromPreferences()
   }
@@ -175,10 +177,15 @@ class RNOpenvpn: RCTEventEmitter {
   @objc(getCurrentState:withRejecter:)
   func getCurrentState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
     
-    let vpnState : NSDictionary = getVpnState(status:NEVPNStatus(rawValue: currentManager?.connection.status.rawValue ?? 0) ?? .disconnected)
-    
-    resolve(vpnState["state"])
-    
+    Task {
+      let managers = try await lookupAll()
+      guard let manager = managers.first else {
+        return
+      }
+      let vpnState : NSDictionary = getVpnState(status:NEVPNStatus(rawValue: manager.connection.status.rawValue ) ?? .disconnected)
+      
+      resolve(vpnState["state"])
+    }
     
   }
   

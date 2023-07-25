@@ -1,6 +1,7 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
 
+
 typedef NS_ENUM(NSInteger, VpnState) {
   VpnStateDisconnected,
   VpnStateConnecting,
@@ -12,6 +13,7 @@ typedef NS_ENUM(NSInteger, VpnState) {
 
 @interface RCT_EXTERN_MODULE(RNOpenvpn, RCTEventEmitter)
 RCT_EXTERN_METHOD(supportedEvents)
+RCT_EXTERN_METHOD(dispose)
 
 
 RCT_EXTERN_METHOD(connect:(NSDictionary *)options
